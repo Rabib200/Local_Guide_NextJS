@@ -1,18 +1,39 @@
 "use client";
-import Navbar from "./components/Navbar";
-
+import Navbar from "./components/common/Navbar";
+import FooterSection from "./components/sections/FooterSection";
+import LogoGroupSection from "./components/sections/LogoGroupSection";
+import MidSection from "./components/sections/MidSection";
+import ServicesSection from "./components/sections/ServicesSection";
+import TopDestination from "./components/sections/TopDestination";
+import TopSection from "./components/sections/TopSection";
 const Home = () => {
   return (
     <>
-      <Navbar />
-
-      <div className="h-60 bg-gradient-to-r from-[#0f1f47] to-[#5f6984] p-2">
-        <div className="text-center mt-20">
-          <h1 className="text-white text-5xl font-bold mb-2">
-            Find Your Guide Anywhere
-          </h1>
+      <main className="relative poppins  md:px-[9rem]">
+        <Navbar />
+        <div className="h-30 bg-transparent text-transparent">
+          <p className="">sdasdasdasdasdadasdasd</p>
+          <p>sdasdasdasdasdadasdasddsada</p>
         </div>
-      </div>
+        <div className="px-4 flex flex-col gap-[7.69rem]">
+          <TopSection />
+          <div className="absolute top-0 right-0 -z-10">
+            <img src="/images/blob-shape.png" alt="blob background shape" />
+          </div>
+          <div className="absolute top-0 left-0 -z-10">
+            <img
+              src="/images/top-left-gradient.png"
+              alt="blob background shape"
+            />
+          </div>
+
+          <LogoGroupSection />
+          <ServicesSection />
+          <TopDestination />
+          <MidSection />
+          <FooterSection />
+        </div>
+      </main>
     </>
   );
 };
