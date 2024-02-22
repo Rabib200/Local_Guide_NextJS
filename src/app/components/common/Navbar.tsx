@@ -1,6 +1,7 @@
 import { X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import AuthModal from "../auth_modals/AuthModals";
 import MainButton from "./MainButton";
 
 export default function Navbar() {
@@ -38,24 +39,33 @@ export default function Navbar() {
               Contact
             </p>
 
-            <Link
+            {/* <Link
               href="/auth/login"
               className="hover:text-primary text-navText font-[600] cursor-pointer flex items-center gap-2 "
             >
               Login
             </Link>
 
-            <MainButton
+            <Link
+              href="/auth/login"
+              className="hover:text-primary text-navText font-[600] cursor-pointer flex items-center gap-2 "
+            >
+              Sign Up
+            </Link> */}
+            <AuthModal isSingIng={true} />
+            <AuthModal isSingIng={false} />
+
+            {/* <MainButton
               text="Sign up"
               classes="bg-transparent text-navText font-[600] shadow-none rounded-normal border border-navText hover:border-none hover:text-white"
-            />
+            /> */}
 
-            <div className="flex gap-2 items-center cursor-pointer">
+            {/* <div className="flex gap-2 items-center cursor-pointer">
               <p className="font-[700]">EN</p>
               <div>
                 <img src="/images/chevron-down.png" alt="chevron down" />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

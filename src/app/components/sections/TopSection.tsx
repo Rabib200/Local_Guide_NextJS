@@ -2,7 +2,7 @@ import MainButton from "../common/MainButton";
 
 export default function TopSection() {
   return (
-    <section className="flex justify-center items-center mt-16 md:z-[9999]">
+    <section className="flex justify-center items-center mt-16 md:z-[0]">
       <div className="pt-32 md:pt-4">
         <div className="flex items-center">
           <p className="text-[1.128rem] font-[700] text-primary uppercase mb-4">

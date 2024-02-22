@@ -2,7 +2,7 @@ import TopDestinationCards from "../cards/TopDestinationCards";
 
 export default function TopDestination() {
   return (
-    <section className="flex justify-center items-center mt-16 md:z-[9999]">
+    <section className="flex justify-center items-center mt-16 md:z-[0]">
       <div className="pt-32 md:pt-4 flex -mt-20 ">
         <div className="flex items-center">
           <div className="flex flex-col mr-50 -mt-5">
@@ -11,7 +11,7 @@ export default function TopDestination() {
             </div>
             <div className="flex flex-col">
               <div className="volkhov text-[3.125rem] text-title font-[700]">
-                Explore Top Tours
+                Explore <br /> Top Tours
               </div>
             </div>
             <div className="flex items-center mt-20 hover:cursor-pointer">
@@ -24,7 +24,7 @@ export default function TopDestination() {
         </div>
       </div>{" "}
       <div
-        className="flex justify-between
+        className="flex justify-between px-20
       "
       >
         {" "}

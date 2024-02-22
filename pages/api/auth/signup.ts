@@ -9,20 +9,20 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
-    const { firstname, lastname, email, password, phone, city } = req.body;
+    const { firstName, lastName, email, password, phone, city } = req.body;
     console.log("API HIT");
     const errors: string[] = [];
 
     const validationSchema = [
       {
-        valid: validator.isLength(firstname, {
+        valid: validator.isLength(firstName, {
           min: 1,
           max: 20,
         }),
         errorMessage: "First Name is invalid",
       },
       {
-        valid: validator.isLength(lastname, {
+        valid: validator.isLength(lastName, {
           min: 1,
           max: 20,
         }),
@@ -62,8 +62,8 @@ export default async function handler(
     // const secret = new TextEncoder().encode(process.env.JWT_SECRET);
     const user = await prisma.user.create({
       data: {
-        firstName: firstname,
-        lastName: lastname,
+        firstName: firstName,
+        lastName: lastName,
         city: city,
         password: hashedPassword,
         email: email,

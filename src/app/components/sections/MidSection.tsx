@@ -1,6 +1,6 @@
 export default function MidSection() {
   return (
-    <section className="flex justify-center items-center mt-16 md:z-[9999]">
+    <section className="flex justify-center items-center mt-16 md:z-[0]">
       <div className="flex flex-col">
         <img src="/images/GirlSitting.png" alt="" />
       </div>

@@ -3,7 +3,7 @@ import ServicesCards from "../cards/ServicesCards";
 export default function ServicesSection() {
   return (
     <>
-      <section className="flex justify-center items-center mt-16 md:z-[9999]">
+      <section className="flex justify-center items-center mt-16 md:z-[0]">
         <div className="pt-32 md:pt-4">
           <div className="flex items-center">
             <div className="flex flex-col mr-50">

@@ -10,6 +10,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
+    console.log("LOGGED IN");
     const errors: string[] = [];
     const { email, password } = req.body;
 
