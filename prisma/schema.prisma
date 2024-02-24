@@ -33,7 +33,20 @@ model User{
     transportation String
     image String
     created_at DateTime @default(now())
-    updated_at DateTime @updatedAt
+    
   }
+    model Guides{
+    id Int @id @default(autoincrement())
+    type String
+    title String
+    cost String
+    duration String
+    package_name String
+    area String
+    image String
+    created_at DateTime @default(now())
+    
+  }
+
 
 

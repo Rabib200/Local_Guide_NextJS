@@ -9,12 +9,12 @@ export default function Plans(props: PlansList) {
   return (
     <>
       {props.plansData.map((item) => (
-        <Card sx={{ maxWidth: 345, backgroundColor: "lightgray" }}>
+        <Card sx={{ width: 345, backgroundColor: "lightgray" }}>
           <CardActionArea>
             <CardMedia
               component="img"
               height="140"
-              image="/images/rome.png"
+              image={`/images/${item.image}`}
               alt="rome"
               className="h-[164.2px] w-[345px] relative rounded object-cover z-[1] mq700:flex-1 "
             />
@@ -30,7 +30,11 @@ export default function Plans(props: PlansList) {
               <Typography variant="body2" color="text.secondary">
                 {item.title}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                className="mt-5 flex justify-end"
+              >
                 {item.cost} $ per person
               </Typography>
               <Typography
@@ -39,8 +43,8 @@ export default function Plans(props: PlansList) {
                 className="mt-7"
               >
                 {/* 2 hours | Family Plan | BUS */}
-                <div className="flex gap-2">
-                  <img src="/images/clock.png" alt="" /> {item.duration}
+                <div className="flex gap-3 mt-5">
+                  <img src="/images/clock.png" alt="" /> {item.duration} hrs
                   <img src="/images/car.png" alt="" /> {item.transportation}
                   <img src="/images/profile.png" alt="" /> {item.package_name}
                 </div>

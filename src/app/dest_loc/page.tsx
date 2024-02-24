@@ -15,40 +15,54 @@ export interface Plan {
   transportation: string;
   image: string;
 }
+export interface Guide {
+  type: string;
+  title: string;
+  cost: string;
+  duration: string;
+  package_name: string;
+  area: string;
+  image: string;
+}
 
 export interface PlansList {
   plansData: Plan[];
 }
-
+export interface GuidesList {
+  guidesData: Guide[];
+}
 const prisma = new PrismaClient();
 
 export default function Page() {
   const [switchChecked, setSwitchChecked] = useState(true);
   const [plans, setPlans] = useState<Plan[]>([]);
+  const [guides, setGuides] = useState<Guide[]>([]);
 
   useEffect(() => {
     const fetchPlans = async () => {
       try {
-        const plansData = await prisma.plans.findMany({
-          select: {
-            type: true,
-            title: true,
-            cost: true,
-            duration: true,
-            package_name: true,
-            transportation: true,
-            image: true,
-          },
-        });
-
-        setPlans(plansData);
-        console.log("passed through here");
+        const response = await fetch("/api/plans/plans");
+        const data = await response.json();
+        setPlans(data);
       } catch (error) {
         console.error("Error fetching plans:", error);
       }
     };
 
     fetchPlans();
+  }, []);
+
+  useEffect(() => {
+    const fetchGuides = async () => {
+      try {
+        const response = await fetch("/api/guides/guides");
+        const data = await response.json();
+        setGuides(data);
+      } catch (error) {
+        console.error("Error fetching plans:", error);
+      }
+    };
+    fetchGuides();
   }, []);
 
   const handleSwitchChange = (checked) => {
@@ -88,11 +102,7 @@ export default function Page() {
             TOP LOCAL GUIDES
           </h5>
           <div className="flex flex-wrap justify-start gap-20 mt-20 ml-20">
-            <Guides />
-            <Guides />
-            <Guides />
-            <Guides />
-            <Guides />
+            <Guides guidesData={guides} />
           </div>
         </div>
       )}
