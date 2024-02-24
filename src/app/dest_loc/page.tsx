@@ -1,13 +1,55 @@
 "use client";
+import { PrismaClient } from "@prisma/client";
 import { Switch } from "antd";
-// import "antd/dist/antd.css"; // Import Ant Design CSS
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Guides from "../components/cards/Guides";
 import Plans from "../components/cards/Plans";
 import Navbar from "../components/common/Navbar";
 
+export interface Plan {
+  type: string;
+  title: string;
+  cost: string;
+  duration: string;
+  package_name: string;
+  transportation: string;
+  image: string;
+}
+
+export interface PlansList {
+  plansData: Plan[];
+}
+
+const prisma = new PrismaClient();
+
 export default function Page() {
   const [switchChecked, setSwitchChecked] = useState(true);
+  const [plans, setPlans] = useState<Plan[]>([]);
+
+  useEffect(() => {
+    const fetchPlans = async () => {
+      try {
+        const plansData = await prisma.plans.findMany({
+          select: {
+            type: true,
+            title: true,
+            cost: true,
+            duration: true,
+            package_name: true,
+            transportation: true,
+            image: true,
+          },
+        });
+
+        setPlans(plansData);
+        console.log("passed through here");
+      } catch (error) {
+        console.error("Error fetching plans:", error);
+      }
+    };
+
+    fetchPlans();
+  }, []);
 
   const handleSwitchChange = (checked) => {
     setSwitchChecked(checked);
@@ -27,7 +69,6 @@ export default function Page() {
           style={{
             backgroundColor: "gray",
             width: "300px",
-
             fontFamily: "sans-serif",
           }}
         />
@@ -38,12 +79,7 @@ export default function Page() {
             TOP DESTINATIONS
           </h5>
           <div className="flex flex-wrap justify-start gap-20 mt-20 ml-20">
-            <Plans />
-            <Plans />
-            <Plans />
-            <Plans />
-            <Plans />
-            <Plans />
+            <Plans plansData={plans} />
           </div>
         </div>
       ) : (

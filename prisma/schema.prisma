@@ -23,14 +23,17 @@ model User{
     updated_at DateTime @updatedAt
   }
 
+  model Plans{
+    id Int @id @default(autoincrement())
+    type String
+    title String
+    cost String
+    duration String
+    package_name String
+    transportation String
+    image String
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+  }
 
 
-// model Tour_DestinationPlan{
-//     id Int @id @default(autoincrement())
-//     destinationName String
-//     description String
-//     duration Int
-//     assignedTourGuide String
-//     assignedTourId Int
-    
-// }

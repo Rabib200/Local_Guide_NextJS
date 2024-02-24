@@ -11,8 +11,10 @@ export default async function handler(
 ) {
   if (req.method === "POST") {
     console.log("LOGGED IN");
+
     const errors: string[] = [];
     const { email, password } = req.body;
+    console.log(req.body);
 
     const validationSchema = [
       {
@@ -31,6 +33,7 @@ export default async function handler(
       }
     });
     if (errors.length) return res.status(400).json({ errorMessage: errors[0] });
+    console.log(errors);
 
     const userWithEmail = await prisma.user.findUnique({
       where: {
@@ -52,6 +55,11 @@ export default async function handler(
         .setProtectedHeader({ alg })
         .setExpirationTime("24h")
         .sign(secret);
+      console.log(token);
+      res.setHeader("Location", "/dest_loc");
+      res.statusCode = 302; // or 301 if you want a permanent redirect
+      res.end();
+
       return res.status(200).json({ Hello: token });
     } else return res.status(400).json({ Hello: "Error" });
   }
