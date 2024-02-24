@@ -1,3 +1,4 @@
+import Link from "next/link";
 import MainButton from "../common/MainButton";
 
 export default function TopSection() {
@@ -41,12 +42,15 @@ export default function TopSection() {
           </p>
         </div>
         <div className="flex gap-6 items-center ">
-          <div>
-            <MainButton
-              text="Get Started"
-              classes="bg-secondary text-white font-[600] shadow-none rounded-[0.564rem] border-none hover:bg-secondary  w-[9.58788rem] h-[3rem]"
-            />
-          </div>
+          <Link href={"/dest_loc/"}>
+            <div>
+              <MainButton
+                text="Get Started"
+                classes="bg-secondary text-white font-[600] shadow-none rounded-[0.564rem] border-none hover:bg-secondary  w-[9.58788rem] h-[3rem]"
+              />
+            </div>
+          </Link>
+
           <div className="flex items-center mt-6 hover:cursor-pointer">
             <img
               src="/images/play-shadow.png"
