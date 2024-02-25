@@ -105,7 +105,7 @@ function FooterSection() {
         </div>
       </div>
       <p className="my-[5.25rem] text-lightGray text-[0.875rem] font-[600] flex justify-center">
-        All rights reserved@jadoo.co
+        All rights reserved@LocalExplore
       </p>
     </section>
   );
