@@ -15,7 +15,7 @@ const Home = () => {
           <p className="">sdasdasdasdasdadasdasd</p>
           <p>sdasdasdasdasdadasdasddsada</p>
         </div>
-        <div className="px-4 flex flex-col gap-[7.69rem]">
+        <div className="px-4 flex flex-col">
           <TopSection />
           <div className="absolute top-0 right-0 -z-10">
             <img src="/images/blob-shape.png" alt="blob background shape" />
@@ -27,11 +27,24 @@ const Home = () => {
             />
           </div>
 
+          <div className=" flex flex-col justify-between h-24"></div>
           <LogoGroupSection />
-          <ServicesSection />
-          <TopDestination />
-          <MidSection />
-          <FooterSection />
+          <div className=" flex flex-col justify-between ">
+            <ServicesSection />
+          </div>
+
+          <div className=" flex flex-col justify-between h-48"></div>
+          <div className="flex  relative top-0 left- -z-10 space-y-5 gap-y-7">
+            <TopDestination />
+          </div>
+          <div className=" flex flex-col justify-between h-64"></div>
+          <div className="relative flex  top-0 left-0 -z-0 gap-[7.69rem] space-y-0.5 h-48 ">
+            <MidSection />
+          </div>
+          <div className=" flex flex-col justify-between h-72"></div>
+          <div className="relative flex flex-col top-0 left-10 -z-0 h- ">
+            <FooterSection />
+          </div>
         </div>
       </main>
     </>

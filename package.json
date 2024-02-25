@@ -12,7 +12,7 @@
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.15.9",
-    "@prisma/client": "^5.9.1",
+    "@prisma/client": "^5.10.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.5",

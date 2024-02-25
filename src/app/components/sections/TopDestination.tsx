@@ -6,7 +6,7 @@ export default function TopDestination() {
       <div className="pt-32 md:pt-4 flex -mt-20 ">
         <div className="flex items-center">
           <div className="flex flex-col mr-50 -mt-5">
-            <div className="text-lightGray text-[1.125rem] font-[600] ">
+            <div className="text-lightGray text-[1.25rem] font-[600]  uppercase mb-4 tracking-widest ">
               Top Destinations
             </div>
             <div className="flex flex-col">
