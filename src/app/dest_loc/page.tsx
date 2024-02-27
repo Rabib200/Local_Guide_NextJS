@@ -1,6 +1,7 @@
 "use client";
 import { PrismaClient } from "@prisma/client";
 import { Switch } from "antd";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import Guides from "../components/cards/Guides";
 import Plans from "../components/cards/Plans";
@@ -34,7 +35,9 @@ export interface GuidesList {
 const prisma = new PrismaClient();
 
 export default function Page() {
+  // const router = useRouter();
   const [switchChecked, setSwitchChecked] = useState(true);
+  const [packagename, setPackagename] = useState("");
   const [plans, setPlans] = useState<Plan[]>([]);
   const [guides, setGuides] = useState<Guide[]>([]);
 
@@ -86,6 +89,23 @@ export default function Page() {
             fontFamily: "sans-serif",
           }}
         />
+      </div>
+      <div className="text-left text-lg py-3 m-auto flex justify-center">
+        <input
+          className="rounded  mr-3 p-2 w-[450px]"
+          type="text"
+          placeholder="State, city or town"
+          value={packagename}
+          onChange={(e) => setPackagename(e.target.value)}
+        />
+        <Link
+          href={{
+            pathname: `/search`,
+            query: { prop: packagename },
+          }}
+        >
+          Let's go
+        </Link>
       </div>
       {switchChecked ? (
         <div>

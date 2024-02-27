@@ -24,7 +24,7 @@ export default async function handler(
       },
     });
     res.json(guides);
-    console.log(guides);
+    // console.log(guides);
   } catch (error) {
     console.error("Error fetching plans: ", error);
     res.status(500).json({ error: "Internal Server Error" });
