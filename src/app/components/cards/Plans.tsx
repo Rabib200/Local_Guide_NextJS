@@ -3,13 +3,23 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import { useRouter } from "next/navigation";
 import { PlansList } from "../../dest_loc/page";
 
-export default function Plans(props: PlansList) {
+export default function Plans(props: PlansList & { getEmail: string }) {
+  const router = useRouter();
+
+  const handlePlanClick = (id: string, email: string) => {
+    router.push(`/plan_details?id=${id}&email=${email}`);
+    // <Details id={id} />;
+  };
   return (
     <>
       {props.plansData.map((item) => (
-        <Card sx={{ width: 345, backgroundColor: "lightgray" }}>
+        <Card
+          sx={{ width: 345, backgroundColor: "lightgray" }}
+          onClick={() => handlePlanClick(item.id, props.getEmail)}
+        >
           <CardActionArea>
             <CardMedia
               component="img"
@@ -28,7 +38,7 @@ export default function Plans(props: PlansList) {
                 {item.type}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                {item.title}
+                {item.title}, {item.location}
               </Typography>
               <Typography
                 variant="body2"

@@ -1,22 +1,26 @@
 "use client";
 import { PrismaClient } from "@prisma/client";
 import { Switch } from "antd";
-import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Guides from "../components/cards/Guides";
 import Plans from "../components/cards/Plans";
 import Navbar from "../components/common/Navbar";
+import Header from "../components/searchCom/Header";
 
 export interface Plan {
+  id: true;
   type: string;
   title: string;
   cost: string;
   duration: string;
   package_name: string;
   transportation: string;
+  location: string;
   image: string;
 }
 export interface Guide {
+  id: true;
   type: string;
   title: string;
   cost: string;
@@ -35,11 +39,19 @@ export interface GuidesList {
 const prisma = new PrismaClient();
 
 export default function Page() {
-  // const router = useRouter();
+  const searchParams = useSearchParams();
+  const getEmail = searchParams.get("email");
+  console.log(getEmail);
   const [switchChecked, setSwitchChecked] = useState(true);
   const [packagename, setPackagename] = useState("");
   const [plans, setPlans] = useState<Plan[]>([]);
   const [guides, setGuides] = useState<Guide[]>([]);
+
+  // useEffect(() => {
+  //   if (getEmail) {
+  //     cookies().set("email", getEmail);
+  //   }
+  // }, [getEmail]);
 
   useEffect(() => {
     const fetchPlans = async () => {
@@ -75,7 +87,7 @@ export default function Page() {
 
   return (
     <section>
-      <Navbar />
+      <Navbar email={getEmail} />
       <div className="flex justify-center mt-10">
         <Switch
           defaultChecked={true}
@@ -90,30 +102,17 @@ export default function Page() {
           }}
         />
       </div>
-      <div className="text-left text-lg py-3 m-auto flex justify-center">
-        <input
-          className="rounded  mr-3 p-2 w-[450px]"
-          type="text"
-          placeholder="State, city or town"
-          value={packagename}
-          onChange={(e) => setPackagename(e.target.value)}
-        />
-        <Link
-          href={{
-            pathname: `/search`,
-            query: { prop: packagename },
-          }}
-        >
-          Let's go
-        </Link>
+      <div>
+        <Header />
       </div>
+
       {switchChecked ? (
         <div>
           <h5 className="volkhov text-[3.125rem] text-title font-[700] flex justify-center mt-6">
             TOP DESTINATIONS
           </h5>
           <div className="flex flex-wrap justify-start gap-20 mt-20 ml-20">
-            <Plans plansData={plans} />
+            <Plans plansData={plans} getEmail={getEmail} />
           </div>
         </div>
       ) : (

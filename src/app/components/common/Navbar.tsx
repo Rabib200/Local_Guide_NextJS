@@ -1,14 +1,14 @@
 import { X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import AuthModal from "../auth_modals/AuthModals";
 import MainButton from "./MainButton";
 
-export default function Navbar() {
+export default function Navbar({ email }) {
   const [menu, setMenu] = useState(false);
   const toggleMenu = () => {
     setMenu(!menu);
   };
+  console.log("from Navbar", email);
   return (
     <div className="md:sticky md:top-0   md:shadow-none z-20 bg-white">
       {/* DESKTOP */}
@@ -18,42 +18,43 @@ export default function Navbar() {
             <img src="/images/MainLogo.png" alt="logo" />
           </div>
           <div className="flex gap-[25px] xl:gap-[50px] text-[16px] items-center select-none">
-            <p
-              className={`hover:text-primary text-navText font-[600] cursor-pointer flex items-center gap-2`}
-            >
-              Home
-            </p>
-            <p
-              className={`hover:text-primary text-navText font-[600] cursor-pointer flex items-center gap-2`}
-            >
-              Discover
-            </p>
-            <p
-              className={`hover:text-primary text-navText font-[600] cursor-pointer flex items-center gap-2`}
-            >
-              Special Deals
-            </p>
+            <Link href={`/dest_loc?email=${email}`}>
+              <p
+                className={`hover:text-primary text-navText font-[600] cursor-pointer flex items-center gap-2`}
+              >
+                Home
+              </p>
+            </Link>
+
+            <Link href={`/wish_list?email=${email}`}>
+              <p
+                className={`hover:text-primary text-navText font-[600] cursor-pointer flex items-center gap-2`}
+              >
+                Wish List
+              </p>
+            </Link>
+
             <p
               className={`hover:text-primary text-navText font-[600] cursor-pointer flex items-center gap-2`}
             >
               Contact
             </p>
 
-            {/* <Link
-              href="/auth/login"
+            <Link
+              href="/sign_in/"
               className="hover:text-primary text-navText font-[600] cursor-pointer flex items-center gap-2 "
             >
               Login
             </Link>
 
             <Link
-              href="/auth/login"
+              href="/sign_up/"
               className="hover:text-primary text-navText font-[600] cursor-pointer flex items-center gap-2 "
             >
               Sign Up
-            </Link> */}
-            <AuthModal isSingIng={true} />
-            <AuthModal isSingIng={false} />
+            </Link>
+            {/* <AuthModal isSingIng={true} />
+            <AuthModal isSingIng={false} /> */}
 
             {/* <MainButton
               text="Sign up"

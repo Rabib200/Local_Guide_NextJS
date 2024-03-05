@@ -11,22 +11,29 @@ export default async function handler(
     return res.status(405).json({ message: "Method not Allowed" });
   }
 
+  const userId = req.query.id;
+
   try {
-    const plans = await prisma.plans.findMany({
-      select: {
-        id: true,
-        type: true,
-        title: true,
-        cost: true,
-        duration: true,
-        package_name: true,
-        transportation: true,
-        location: true,
-        image: true,
+    const select = {
+      id: true,
+      type: true,
+      title: true,
+      cost: true,
+      duration: true,
+      package_name: true,
+      transportation: true,
+      location: true,
+      image: true,
+    };
+
+    const Qplan = await prisma.plans.findUnique({
+      where: {
+        id: parseInt(userId),
       },
+      select,
     });
-    // console.log(plans);
-    res.json(plans);
+
+    res.json(Qplan);
   } catch (error) {
     console.error("Error fetching plans: ", error);
     res.status(500).json({ error: "Internal Server Error" });

@@ -32,6 +32,7 @@ model User{
     package_name String
     transportation String
     image String
+    location String? @default("Unknown")
     created_at DateTime @default(now())
     
   }
@@ -48,5 +49,13 @@ model User{
     
   }
 
+  model Wish{
+    id Int @id @default(autoincrement())
+    email String
+    plan String
+    num_people Int
+    guide_name String
+    cost Float
 
+  }
 

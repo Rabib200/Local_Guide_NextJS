@@ -34,6 +34,27 @@ export default function AuthModal(SingIn: { isSingIng: boolean }) {
     password: "",
   });
 
+  // const handleSubmit = async (e: { preventDefault: () => void }) => {
+  //   e.preventDefault();
+  //   try {
+  //     const response = await fetch(
+  //       SingIn.isSingIng ? "/api/auth/signin" : "/api/auth/signup",
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify(inputs),
+  //       }
+  //     );
+  //     const data = await response.json();
+  //     // Handle response data as needed (e.g., show error messages, redirect user)
+  //     console.log(data);
+  //     handleClose(); // Close modal after successful submission
+  //   } catch (error) {
+  //     console.error("Error:", error);
+  //   }
+  // };
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     try {
@@ -47,12 +68,16 @@ export default function AuthModal(SingIn: { isSingIng: boolean }) {
           body: JSON.stringify(inputs),
         }
       );
+      if (!response.ok) {
+        throw new Error("Failed to authenticate or sign up.");
+      }
       const data = await response.json();
-      // Handle response data as needed (e.g., show error messages, redirect user)
+      // Handle response data as needed (e.g., show success message, redirect user)
       console.log(data);
       handleClose(); // Close modal after successful submission
     } catch (error) {
       console.error("Error:", error);
+      // Handle error, e.g., display error message to the user
     }
   };
 
