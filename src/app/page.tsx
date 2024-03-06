@@ -37,12 +37,12 @@ const Home = () => {
           <div className="flex  relative top-0 left- -z-10 space-y-5 gap-y-7">
             <TopDestination />
           </div>
-          <div className=" flex flex-col justify-between h-64"></div>
-          <div className="relative flex  top-0 left-0 -z-0 gap-[7.69rem] space-y-0.5 h-48 ">
+          <div className=" flex flex-col justify-between h-64">
             <MidSection />
           </div>
+          <div className="relative flex  top-0 left-0 -z-0 gap-[7.69rem] space-y-0.5 h-48 "></div>
           <div className=" flex flex-col justify-between h-72"></div>
-          <div className="relative flex flex-col top-0 left-10 -z-0 h- ">
+          <div className="relative flex flex-col top-8 left-10 -z-0 h- ">
             <FooterSection />
           </div>
         </div>

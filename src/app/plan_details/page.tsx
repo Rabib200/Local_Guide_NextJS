@@ -102,7 +102,7 @@ export default function Details() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar email={getEmail} />
       <div className="flex justify-center">
         <Card sx={{ width: 600, backgroundColor: "lightgray" }}>
           <CardMedia
