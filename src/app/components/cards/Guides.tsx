@@ -4,11 +4,20 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-export default function Guides(props: GuidesList) {
+import { useRouter } from "next/navigation";
+export default function Guides(props: GuidesList & { getEmail: string }) {
+  const router = useRouter();
+  const handleGuideClick = (id: string, email: string) => {
+    router.push(`/guide_details?id=${id}&email=${email}`);
+  };
+
   return (
     <>
       {props.guidesData.map((item) => (
-        <Card sx={{ width: 345, backgroundColor: "lightgray" }}>
+        <Card
+          sx={{ width: 345, backgroundColor: "lightgray" }}
+          onClick={() => handleGuideClick(item.id, props.getEmail)}
+        >
           <CardActionArea>
             <CardMedia
               component="img"

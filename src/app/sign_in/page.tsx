@@ -36,15 +36,14 @@ export default function SignIn() {
 
       router.push(`/dest_loc?email=${formData.email}`); // Redirect to destination page
     } catch (error) {
-      console.error("Error:", error.message); // Handle error
+      console.error("Error:", error.message);
     }
   };
 
   return (
     <div>
-      <div className="flex justify-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 bg-white shadow-lg p-6">
+      <div className="flex justify-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 bg-white ">
         <form
-          autoComplete="off"
           className="flex flex-col justify-center mt-11 "
           onSubmit={handleSubmit}
         >

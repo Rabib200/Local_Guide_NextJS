@@ -103,7 +103,7 @@ export default function Page() {
         />
       </div>
       <div>
-        <Header />
+        <Header getEmail={getEmail} />
       </div>
 
       {switchChecked ? (
@@ -121,7 +121,7 @@ export default function Page() {
             TOP LOCAL GUIDES
           </h5>
           <div className="flex flex-wrap justify-start gap-20 mt-20 ml-20">
-            <Guides guidesData={guides} />
+            <Guides guidesData={guides} getEmail={getEmail} />
           </div>
         </div>
       )}

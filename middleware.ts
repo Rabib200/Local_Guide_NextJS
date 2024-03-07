@@ -2,39 +2,6 @@ import * as jose from "jose";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function middleware(req: NextRequest, res: NextResponse) {
-  //   const bearerToken = req.headers.get("cookie") as string;
-
-  //   console.log(bearerToken);
-
-  //   if (!bearerToken) {
-  //     return new NextResponse(
-  //       JSON.stringify({ errorMessage: "Unauthorized request bearer token" }),
-  //       { status: 401 }
-  //     );
-  //   }
-  //   const token = bearerToken.split(".")[2];
-  //   console.log(token);
-
-  //   if (!token) {
-  //     return new NextResponse(
-  //       JSON.stringify({ errorMessage: "Unauthorized Request token" }),
-  //       { status: 401 }
-  //     );
-  //   }
-
-  //   const secret = new TextEncoder().encode(process.env.JWT_SECRET);
-
-  //   try {
-  //     await jose.jwtVerify(token, secret);
-  //   } catch (error) {
-  //     return (
-  //       new NextResponse(
-  //         JSON.stringify({ errorMessage: "Unauthorized request secret" })
-  //       ),
-  //       { status: 401 }
-  //     );
-  //   }
-  // }
   const cookieHeader = req.headers.get("cookie");
 
   if (!cookieHeader) {
