@@ -1,58 +1,72 @@
+"use client";
 import { CardActionArea } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { PrismaClient } from "@prisma/client";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import Navbar from "../components/common/Navbar";
 import Header from "../components/searchCom/Header";
 
-const prisma = new PrismaClient();
-const fetchPlansByPackageName = async (packagename: string | undefined) => {
-  const select = {
-    id: true,
-    type: true,
-    title: true,
-    cost: true,
-    duration: true,
-    package_name: true,
-    transportation: true,
-    image: true,
-  };
+export interface Plan {
+  id: true;
+  type: string;
+  title: string;
+  cost: string;
+  duration: string;
+  package_name: string;
+  transportation: string;
+  location: string;
+  image: string;
+}
 
-  if (!packagename) {
-    console.log("no");
-    return await prisma.plans.findMany({ select });
-  }
-  const Qplans = await prisma.plans.findMany({
-    where: {
-      package_name: {
-        contains: packagename.toLowerCase(),
-        mode: "insensitive",
-      },
-    },
-    select,
-  });
-  return Qplans;
-};
+export interface PlansList {
+  plansData: Plan[];
+}
 
-export default async function Search({
+export default function Search({
   searchParams: { packagename },
 }: {
   searchParams: { packagename: string | undefined };
 }) {
-  const Qplans = await fetchPlansByPackageName(packagename);
-  console.log(Qplans);
+  const [Qplans, setQplan] = useState<Plan[]>([]);
+  const searchParams = useSearchParams();
+  const email = searchParams?.get("email");
+  const router = useRouter();
+
+  useEffect(() => {
+    const fetchPlansByPackageName = async () => {
+      try {
+        const response = await fetch(
+          `/api/search_query/search_query?packagename=${packagename}`
+        );
+        const data = await response.json();
+        setQplan(data);
+      } catch (error: any) {
+        console.error("Error fetching plans:", error);
+      }
+    };
+    fetchPlansByPackageName();
+  }, [packagename]);
+
+  const handleSearchClick = (id: string, email: string) => {
+    router.push(`/plan_details?id=${id}&email=${email}`);
+  };
 
   return (
     <>
       <section>
-        {/* <Navbar /> */}
+        <Navbar email={email} />
         <div className="text-left text-lg py-3 m-auto flex justify-center">
-          <Header />
+          <Header email={email} />
         </div>
         <div className="flex flex-wrap justify-start gap-20 mt-20 ml-20">
           {Qplans.map((item) => (
-            <Card sx={{ width: 345, backgroundColor: "lightgray" }}>
+            <Card
+              sx={{ width: 345, backgroundColor: "lightgray" }}
+              onClick={() => handleSearchClick(item.id, email)}
+            >
               <CardActionArea>
                 <CardMedia
                   component="img"

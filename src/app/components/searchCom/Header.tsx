@@ -1,5 +1,9 @@
 import SearchBar from "./SearchBar";
 
-export default function Header() {
-  return <SearchBar />;
+interface HeaderProps {
+  email: string | undefined;
+}
+
+export default function Header({ email }: HeaderProps) {
+  return <SearchBar email={email} />;
 }

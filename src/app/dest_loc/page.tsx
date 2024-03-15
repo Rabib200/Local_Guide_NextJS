@@ -103,7 +103,7 @@ export default function Page() {
         />
       </div>
       <div>
-        <Header getEmail={getEmail} />
+        <Header email={getEmail} />
       </div>
 
       {switchChecked ? (

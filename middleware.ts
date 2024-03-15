@@ -49,5 +49,5 @@ export async function middleware(req: NextRequest, res: NextResponse) {
   //   });
 }
 export const config = {
-  matcher: ["/api/auth/me", "/dest_loc/"],
+  matcher: ["/api/auth/me", "/dest_loc/", "/plan_form"],
 };

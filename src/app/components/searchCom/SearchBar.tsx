@@ -3,9 +3,11 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function SearchBar() {
+export default function SearchBar({ email }: string | undefined) {
   const router = useRouter();
   const [packagename, setPackagename] = useState("");
+  const UserEmail = email;
+  console.log(UserEmail);
 
   return (
     <>
@@ -21,8 +23,10 @@ export default function SearchBar() {
           className="rounded bg-red-600 px-9 py-2 text-white"
           onClick={() => {
             if (packagename === "") return;
-            router.push(`/search?packagename=${packagename}`);
-            console.log(packagename);
+            router.push(
+              `/search?packagename=${packagename}&email=${UserEmail}`
+            );
+
             setPackagename("");
           }}
         >
